@@ -8,16 +8,16 @@
 id = "mm_recomp_great_fairy_sword_plus"
 
 # Version of this mod.
-version = "1.0.0"
+version = "1.0.1"
 
 # The name that will show up for this mod in the mod menu. This should be human readable.
 display_name = "Great Fairy Sword Plus"
 
 # The description that will show up when this mod is displayed in the mod menu. This should be human readable.
 description =  """
-Allows the Great Fairy Sword to be equipped to the Attack button, overriding the player's current sword.
+This is a mod for Zelda64Recompiled that allows the Great Fairy's Sword to be optionally equipped to the Attack button instead of the C-buttons, making it a lot more functionally useful (although you can't use a shield with it, which keeps the game balanced).
 
-If you have it installed, place this mod below Forms Use More Items.
+If you have it installed, place this mod below Forms Use More Items (with this mod, equipping the Great Fairy's Sword to Deku Link is impossible, so it should be greyed out in the item select screen). Furthermore, EZ Text Replacer API is required.
 """
 
 # A short description that will show up in this mod's entry in the mod list. This should be human readable and kept short

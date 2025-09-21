@@ -34,14 +34,14 @@ RECOMP_CALLBACK("*", recomp_after_moon_crash) void after_moon_crash(SramContext*
 // Keep GFS equipped if B button item is changed back to normal sword contextually e.g. dismounting Epona.
 // Does this by checking if the item at the beginning of the function is different to the item at the end and
 // whether the item at the end is a sword. 
-u8 bItem;
+u8 bBButtonItemEquip;
 
 RECOMP_HOOK("Interface_UpdateButtonsPart2") void Interface_UpdateButtonsPart2_Init(PlayState* play) {
-    bItem = BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B);
+    bBButtonItemEquip = BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B);
 }
 
 RECOMP_HOOK_RETURN("Interface_UpdateButtonsPart2") void Interface_UpdateButtonsPart2_Return() {
-    if (mGFSEquipped && BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) != bItem &&
+    if (mGFSEquipped && BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) != bBButtonItemEquip &&
         ((ITEM_SWORD_KOKIRI <= BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) && BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) <= ITEM_SWORD_DEITY) ||
         BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) == ITEM_NONE)) {
             BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) = ITEM_SWORD_GREAT_FAIRY;

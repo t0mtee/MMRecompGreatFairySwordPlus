@@ -12,11 +12,7 @@ RECOMP_HOOK("EnMThunder_Draw") void EnMThunder_Draw_Init(Actor* thisx, PlayState
 
 RECOMP_HOOK("Matrix_RotateXS") void Matrix_RotateXS_Init(s16 x, MatrixMode mode) {
     if (bThis != NULL && bThis->type == ENMTHUNDER_TYPE_GREAT_FAIRYS_SWORD) {
-        if (bThis->type == ENMTHUNDER_TYPE_GILDED_SWORD) {
-            Matrix_Scale(1.5833f, 1.375f, 1.5f, MTXMODE_APPLY);
-        } else {
-            Matrix_Scale(2.7143f, 1.8333f, 2.25f, MTXMODE_APPLY);
-        }
+        Matrix_Scale(2.7143f, 1.8333f, 2.25f, MTXMODE_APPLY);
         bThis = NULL;
     }
 }
