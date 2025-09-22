@@ -13,21 +13,9 @@ RECOMP_CALLBACK("*", recomp_after_play_init) void after_play_init(PlayState* thi
     // Save PlayState to be used throughout the mod.
     bPlayState = this;
     
-    // Used to re-equip after Song of Time.
-    if (mGFSEquipped) {
-        BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) = ITEM_SWORD_GREAT_FAIRY;
-    }
-    
     // Compatibility with Forms Use More Items - disable GFS for all forms except humans (who wants to use GFS as Deku anyways?)
     for (PlayerTransformation i = PLAYER_FORM_FIERCE_DEITY; i < PLAYER_FORM_HUMAN; i++) {
         gPlayerFormItemRestrictions[i][ITEM_SWORD_GREAT_FAIRY] = false;
-    }
-}
-
-RECOMP_CALLBACK("*", recomp_after_moon_crash) void after_moon_crash(SramContext* sramCtx) {
-    // Used to re-equip after Moon Crash.
-    if (mGFSEquipped) {
-        BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) = ITEM_SWORD_GREAT_FAIRY;
     }
 }
 

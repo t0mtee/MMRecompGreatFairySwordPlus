@@ -13,8 +13,8 @@ void Mod_UnequipGFS() {
     } else {
         BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) = ITEM_SWORD_KOKIRI - 1 + GET_CUR_EQUIP_VALUE(EQUIP_TYPE_SWORD);
     }
-    mGFSEquipped = false;
     Interface_LoadItemIconImpl(bPlayState, EQUIP_SLOT_B);
+    mGFSEquipped = false;
 }
 
 // Allow GFS to be equipped if player presses button a mask is being worn on.
@@ -56,10 +56,12 @@ RECOMP_HOOK_RETURN("KaleidoScope_UpdateItemCursor") void KaleidoScope_UpdateItem
     if (pauseCtx->mainState == PAUSE_MAIN_STATE_EQUIP_ITEM && pauseCtx->equipTargetItem == ITEM_SWORD_GREAT_FAIRY) {
         pauseCtx->mainState = PAUSE_MAIN_STATE_IDLE;
         
-        if (BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) != ITEM_SWORD_GREAT_FAIRY) {
+        if (BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) == ITEM_SWORD_DEITY) {
+            mGFSEquipped = !mGFSEquipped;
+        } else if (BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) != ITEM_SWORD_GREAT_FAIRY) {
             BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) = ITEM_SWORD_GREAT_FAIRY;
-            mGFSEquipped = true;
             Interface_LoadItemIconImpl(bPlayState, EQUIP_SLOT_B);
+            mGFSEquipped = true;
         } else {
             Mod_UnequipGFS();
         }
@@ -67,4 +69,11 @@ RECOMP_HOOK_RETURN("KaleidoScope_UpdateItemCursor") void KaleidoScope_UpdateItem
 
     gSaveContext.save.playerForm = bCurrentForm;
     bCurrentMask = 255;
+}
+
+RECOMP_HOOK_RETURN("Inventory_UpdateDeitySwordEquip") void Inventory_UpdateDeitySwordEquip_Return() {
+    if (mGFSEquipped == true && BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) != ITEM_SWORD_DEITY) {
+        BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) = ITEM_SWORD_GREAT_FAIRY;
+        Interface_LoadItemIconImpl(bPlayState, EQUIP_SLOT_B);
+    }
 }
