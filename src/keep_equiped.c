@@ -17,6 +17,12 @@ RECOMP_CALLBACK("*", recomp_after_play_init) void after_play_init(PlayState* thi
     for (PlayerTransformation i = PLAYER_FORM_FIERCE_DEITY; i < PLAYER_FORM_HUMAN; i++) {
         gPlayerFormItemRestrictions[i][ITEM_SWORD_GREAT_FAIRY] = false;
     }
+    
+    // If we load a save that previously had the GFS equipped...
+    if (BUTTON_ITEM_EQUIP(0, EQUIP_SLOT_B) == ITEM_SWORD_GREAT_FAIRY)
+    {
+        mGFSEquipped = true;
+    }
 }
 
 // Keep GFS equipped if B button item is changed back to normal sword contextually e.g. dismounting Epona.
